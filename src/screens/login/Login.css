@@ -1,0 +1,18 @@
+.LoginCard {
+    margin: auto;
+    margin-top: 100px;
+    width: 350px;
+    padding: 30px;
+}
+.formControl {
+    width: 100%;
+}
+.red{
+    color: red;
+}
+.dispNone {
+    display: none;
+}
+.dispBlock {
+    display: block;
+}
