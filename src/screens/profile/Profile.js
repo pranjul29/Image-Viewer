@@ -40,7 +40,7 @@ class Profile extends Component {
             newName: "",
             updatedNameRequired: "dispNone",
             comment: "",
-            tempComment: props.commentsList,
+            interimComment: props.commentsList,
             comments: ["", "", "", "", "", "", "", ""],
             liked: false,
             loggedIn
@@ -90,25 +90,25 @@ class Profile extends Component {
     }
 
     commentChangeHandler = (pos, e) => {
-        let temp = this.state.comments
-        temp[pos] = e.target.value
-        this.setState({ comments: temp })
+        let interim = this.state.comments
+        interim[pos] = e.target.value
+        this.setState({ comments: interim })
     }
 
     addComment = (pos) => {
         if (this.state.comments[pos].trim() !== "") {
             this.props.addComments(pos, this.state.comments[pos])
         }
-        let temp = this.state.comments
-        temp[pos] = ""
-        this.setState({ comments: temp })
+        let interim = this.state.comments
+        interim[pos] = ""
+        this.setState({ comments: interim })
     }
 
     render() {
 
-        let temp = 0
-        let tempsrc
-        let tempUsername
+        let interim = 0
+        let interimsrc
+        let interimUsername
         let likeNumber
         let counter = 0
         let likeStatus
@@ -125,38 +125,38 @@ class Profile extends Component {
                     :
             <div>
                 <Header displayUserProfileIcon={true} />
-                <div className="profile">
-                    <div className="profileContainer">
-                        <div className="outer">
-                            <div className="inner">
+                <div className="ProfilePage">
+                    <div className="UserProfileContainer">
+                        <div className="OuterDiv">
+                            <div className="InnerDiv">
                                 <div>
-                                    <img className="profilePhoto" src={img} alt="profile" /*onClick={this.openPostModel.bind(this, "Temporary Test Post", img, "testUser", Math.floor(Math.random() * 20), false, 2 )}*/ />
+                                    <img className="UserProfilePhoto" src={img} alt="profile" /*onClick={this.openPostModel.bind(this, "interimorary Test Post", img, "testUser", Math.floor(Math.random() * 20), false, 2 )}*/ />
                                 </div>
-                                <div className="accountDetails">
+                                <div className="UserAccountDetails">
                                     <div>
                                         <Typography variant="h4">{profileUsername}</Typography>
                                     </div>
-                                    <div className="socialDetails">
-                                        <div className="socials">
+                                    <div className="SocialInfo">
+                                        <div className="social">
                                             <Typography variant="h6">Post: {this.props.posts.length}</Typography>
                                         </div>
-                                        <div className="socials">
+                                        <div className="social">
                                             <Typography variant="h6">Follows: {this.props.follows}</Typography>
                                         </div>
-                                        <div className="socials">
+                                        <div className="social">
                                             <Typography variant="h6">Followed By: {this.props.followedBy}</Typography>
                                         </div>
                                     </div>
-                                    <div className="ownerDetails">
-                                        <div className="ownerName">
+                                    <div className="UserDetails">
+                                        <div className="UserName">
                                             <Typography variant="h5">{this.state.realName}</Typography>
                                         </div>
-                                        <div className="editNameButton">
+                                        <div className="EditName">
                                             <Fab color="secondary" aria-label="edit" onClick={this.openModel}>
                                                 <EditIcon />
                                             </Fab>
                                             <Modal
-                                                className="profileModal"
+                                                className="ProfileModal"
                                                 open={this.state.modalIsOpen}
                                                 onClose={this.closeModal}
                                                 closeAfterTransition
@@ -165,7 +165,7 @@ class Profile extends Component {
                                                     timeout: 500,
                                                 }}
                                             >
-                                                <div className="innerModalDiv" >
+                                                <div className="ModalDiv" >
                                                     <div>
                                                         <Typography variant="h6">Edit</Typography>
                                                     </div><br />
@@ -190,8 +190,8 @@ class Profile extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="gallery">
-                            <div className="gridSection">
+                        <div className="ProfileGallery">
+                            <div className="Grid">
                                 <GridList cellHeight={240} className={"postLists"} cols={3}>
                                     {this.props.posts.map(post => {
                                         likeNumber = this.props.likeList[counter]
@@ -199,17 +199,17 @@ class Profile extends Component {
                                         counter++
                                         this.props.postDetails.forEach(thispost => {
                                             if (post.id === thispost.id) {
-                                                tempsrc = thispost.media_url
-                                                tempUsername = thispost.username
+                                                interimsrc = thispost.media_url
+                                                interimUsername = thispost.username
                                             }
                                         })
-                                        return <GridListTile key={post.id} className="gridTile">
-                                            <img src={tempsrc} alt={post.caption} onClick={this.openPostModel.bind(this, post.caption, tempsrc, tempUsername, likeNumber, likeStatus, counter - 1)} />
+                                        return <GridListTile key={post.id} className="GridTile">
+                                            <img src={interimsrc} alt={post.caption} onClick={this.openPostModel.bind(this, post.caption, interimsrc, interimUsername, likeNumber, likeStatus, counter - 1)} />
                                         </GridListTile>
                                     })}
                                 </GridList>
                                 <Modal
-                                    className="profileModal"
+                                    className="ProfileModal"
                                     open={this.state.PostModalIsOpen}
                                     onClose={this.closePostModal}
                                     closeAfterTransition
@@ -218,34 +218,34 @@ class Profile extends Component {
                                         timeout: 500,
                                     }}
                                 >
-                                    <div className="innerModalDiv">
-                                        <div className="postModal">
-                                            <div className="leftDiv">
+                                    <div className="ModalDiv">
+                                        <div className="ProfilePageModal">
+                                            <div className="leftDivSection">
                                                 <img className="postImage" src={this.state.modalSrc} alt="alternate" />
                                             </div>
-                                            <div className="rightDiv">
-                                                <div className="userProfilePhotoAndName">
-                                                    <img className="profilePhotoInPostModal" src={img} alt="profilePic" />
-                                                    <Typography className="usernamePostModal" variant="h6">{this.state.username}</Typography>
+                                            <div className="rightDivSection">
+                                                <div className="ModalUserDetails">
+                                                    <img className="ProfilePhotoModal" src={img} alt="profilePic" />
+                                                    <Typography className="UserNameModal" variant="h6">{this.state.username}</Typography>
                                                 </div>
                                                 <hr />
                                                 <Typography variant="h5">{this.state.postCaption}</Typography>
-                                                <div className="tags">
+                                                <div className="TagsSection">
                                                     {
                                                         this.props.tagsList[Object.keys(this.props.tagsList)[this.state.counter]].map(tag => {
-                                                            temp++
-                                                            return <span key={"tag"+temp}>{tag}&nbsp;</span>
+                                                            interim++
+                                                            return <span key={"tag"+interim}>{tag}&nbsp;</span>
                                                         })
                                                     }
                                                 </div>
-                                                <div className="commentSection">
+                                                <div className="Comments">
                                                     <div>
-                                                        <div id="comments" className="comments">
-                                                            <div className="addedCommentsSection">
+                                                        <div id="comments">
+                                                            <div className="ExistingComments">
                                                                 {
                                                                     this.props.commentsList[Object.keys(this.props.commentsList)[this.state.counter]].map(comment => {
-                                                                        temp++
-                                                                        return <div key={temp}>
+                                                                        interim++
+                                                                        return <div key={interim}>
                                                                             <span className="bold">{this.state.username}:</span>
                                                                             <span>{comment}</span>
                                                                         </div>
@@ -253,19 +253,19 @@ class Profile extends Component {
                                                                 }
                                                             </div>
                                                         </div>
-                                                        <div className="rightBottomSection">
+                                                        <div className="NewCommentSection">
                                                             <div>
                                                                 {
                                                                     this.state.liked ? <div className="likeSectionInProfilePage"><Favorite id={2} style={{ color: "red" }} className="likeButton" onClick={this.likeClickhandler} /><span>{this.state.likeCounter + 1} likes</span></div> :
                                                                         <div className="likeSectionInProfilePage"><FavoriteBorderIcon id={2} className="likeButton" onClick={this.likeClickhandler} /><span>{this.state.likeCounter} likes</span></div>
                                                                 }
                                                             </div>
-                                                            <div className="addCommentInProfilePage">
-                                                                <FormControl className="commentInput" >
+                                                            <div className="ProfilePageAddComment">
+                                                                <FormControl className="addCommentInput" >
                                                                     <InputLabel htmlFor={"input" + counter}>Add a comment</InputLabel>
                                                                     <Input id={"input" + counter} type="text" value={this.state.comments[this.state.counter]} onChange={this.commentChangeHandler.bind(this, this.state.counter)} />
                                                                 </FormControl>
-                                                                <Button className="addButton" variant="contained" color="primary" onClick={this.addComment.bind(this, this.state.counter)}>
+                                                                <Button className="addCommentButton" variant="contained" color="primary" onClick={this.addComment.bind(this, this.state.counter)}>
                                                                     ADD
                                                                 </Button>
                                                             </div>

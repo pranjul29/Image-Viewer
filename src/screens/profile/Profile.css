@@ -1,9 +1,9 @@
-.profile {
+.ProfilePage {
     width: 100%;
     min-width: 1080px;
     padding-top: 64px;
 }
-.profileContainer {
+.UserProfileContainer {
     padding: 15px;
     padding-top: 30px;
     display: flex;
@@ -11,39 +11,39 @@
     justify-content: center;
     align-self: center;
 }
-.profilePhoto {
+.UserProfilePhoto {
     height: 135px;
     width: 135px;
     border-radius: 50%;
     margin-right: 50px;
 }
-.outer {
+.OuterDiv {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-self: center;
 }
-.inner {
+.InnerDiv {
     display: flex;
 }
-.socialDetails {
+.SocialInfo {
     display: flex;
     margin-top: 10px;
 }
-.socials {
+.social {
     padding-right: 70px;
 }
-.ownerDetails {
+.UserDetails {
     display: flex;
     margin-top: 10px;
 }
-.ownerName {
+.UserName {
     padding-top: 15px;
 }
-.editNameButton{
+.EditName{
     padding-left: 10px;
 }
-.gallery {
+.ProfileGallery {
     padding: 20px;
     width: 80%;
     display: flex;
@@ -51,20 +51,20 @@
     justify-content: center;
     align-self: center;
 }
-.profileModal {
+.ProfileModal {
     display: flex;
     align-items: center;
     justify-content: center;
     outline: none;
     border: 2px white;
 }
-.innerModalDiv {
+.ModalDiv {
     background-color: white;
     padding: 20px;
     outline: none;
     border-radius: 4px;
 }
-.profilePhotoInPostModal {
+.ProfilePhotoModal {
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -74,24 +74,24 @@
     margin-right: 20px;
     width: 500px;
 }
-.postModal {
+.ProfilePageModal {
     display: flex;
 }
-.leftDiv {
+.leftDivSection {
     display: flex;
     flex-direction: column;
 }
-.rightDiv {
+.rightDivSection {
     width: 500px;
     position: relative;
 }
-.userProfilePhotoAndName {
+.ModalUserDetails {
     display: flex;
 }
-.usernamePostModal {
+.UserNameModal {
     padding: 10px;
 }
-.addCommentInProfilePage {
+.ProfilePageAddComment {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -100,10 +100,10 @@
     justify-content: baseline;
     align-items: center;
 }
-.commentInput {
+.addCommentInput {
     width: 80%;
 }
-.rightBottomSection {
+.NewCommentSection {
     display: flex;
     flex-direction: column;
 }
@@ -114,7 +114,11 @@
     justify-content: baseline;
     margin-bottom: 30px;
 }
-.addedCommentsSection {
+.ExistingComments {
     max-height: 280px;
     overflow-y: auto;
+}
+
+.TagsSection{
+    color: blue;
 }
