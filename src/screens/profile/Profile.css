@@ -1,0 +1,120 @@
+.profile {
+    width: 100%;
+    min-width: 1080px;
+    padding-top: 64px;
+}
+.profileContainer {
+    padding: 15px;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+.profilePhoto {
+    height: 135px;
+    width: 135px;
+    border-radius: 50%;
+    margin-right: 50px;
+}
+.outer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+.inner {
+    display: flex;
+}
+.socialDetails {
+    display: flex;
+    margin-top: 10px;
+}
+.socials {
+    padding-right: 70px;
+}
+.ownerDetails {
+    display: flex;
+    margin-top: 10px;
+}
+.ownerName {
+    padding-top: 15px;
+}
+.editNameButton{
+    padding-left: 10px;
+}
+.gallery {
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+.profileModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: 2px white;
+}
+.innerModalDiv {
+    background-color: white;
+    padding: 20px;
+    outline: none;
+    border-radius: 4px;
+}
+.profilePhotoInPostModal {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.postImage {
+    margin-right: 20px;
+    width: 500px;
+}
+.postModal {
+    display: flex;
+}
+.leftDiv {
+    display: flex;
+    flex-direction: column;
+}
+.rightDiv {
+    width: 500px;
+    position: relative;
+}
+.userProfilePhotoAndName {
+    display: flex;
+}
+.usernamePostModal {
+    padding: 10px;
+}
+.addCommentInProfilePage {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    justify-content: baseline;
+    align-items: center;
+}
+.commentInput {
+    width: 80%;
+}
+.rightBottomSection {
+    display: flex;
+    flex-direction: column;
+}
+.likeSectionInProfilePage {
+    position: absolute;
+    bottom: 5%;
+    display: flex;
+    justify-content: baseline;
+    margin-bottom: 30px;
+}
+.addedCommentsSection {
+    max-height: 280px;
+    overflow-y: auto;
+}
