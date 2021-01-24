@@ -14,6 +14,8 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Redirect} from 'react-router-dom';
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
 
 class Home extends Component {
     constructor() {
@@ -88,7 +90,8 @@ class Home extends Component {
                         />
                         <div className="HomePage">
                             <div className="homeMain">
-                                <div className="CardContainer">
+                                {/*<div className="CardContainer">*/}
+                                <GridList cellHeight={"auto"} className="CardContainer" cols={2} spacing={2}>
                                     {
                                         displayPosts.map(post => {
                                             likeNumber = this.props.likeList[counter]
@@ -106,7 +109,8 @@ class Home extends Component {
                                                     interimSec = interimTimeStamp.getSeconds()
                                                 }
                                             });
-                                            return <Card key={post.id} id={post.id} className="cardStyle">
+                                            return <GridListTile>
+                                            <Card key={post.id} id={post.id} className="cardStyle">
                                                 <div>
                                                     <CardHeader className="CardHead" avatar={
                                                         <Avatar className="CardHeadAvatar" src={img} sizes="small"/>
@@ -186,9 +190,11 @@ class Home extends Component {
                                                     </CardContent>
                                                 </div>
                                             </Card>
+                                            </GridListTile>
                                         })
                                     }
-                                </div>
+                                </GridList>
+                                {/*</div>*/}
                             </div>
                         </div>
                     </div>} </div>

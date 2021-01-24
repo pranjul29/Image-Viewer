@@ -14,12 +14,13 @@
 }
 
 .CardContainer {
-    padding-left: 5%;
-    padding-right: 5%;
+    /*padding-left: 5%;*/
+    /*padding-right: 5%;*/
+    margin-left: 20px;
     min-width: 1280px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .cardStyle {
