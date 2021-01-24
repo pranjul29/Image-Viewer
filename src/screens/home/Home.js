@@ -52,10 +52,7 @@ class Home extends Component {
 
     render() {
 
-        console.log(this.props.posts)
-        if (!this.state.loggedIn) {
-            return <Redirect to="/" />
-        }
+        //console.log(this.props.posts)
 
         let temp = 0
 
@@ -80,6 +77,10 @@ class Home extends Component {
         this.props.showFilteredPosts ? displayPosts = this.props.filteredPosts : displayPosts = this.props.posts
 
         return (
+            <div>
+                {this.state.loggedIn === false ?
+                    <Redirect to="/" />
+                    :
             <div className="mainContainer">
                 <Header dispalySearchBar={true}
                         displayUserProfileIcon={true}
@@ -172,7 +173,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> } </div>
         )
     }
 }
