@@ -80,14 +80,14 @@ class Home extends Component {
         this.props.showFilteredPosts ? displayPosts = this.props.filteredPosts : displayPosts = this.props.posts
 
         return (
-            <div className="outerContainer">
+            <div className="mainContainer">
                 <Header dispalySearchBar={true}
                         displayUserProfileIcon={true}
                         filterCaptions={this.props.filterCaptions}
                 />
-                <div className="home">
+                <div className="HomePage">
                     <div className="homeMain">
-                        <div className="cardContainer">
+                        <div className="CardContainer">
                             {
                                 displayPosts.map(post => {
                                     likeNumber = this.props.likeList[counter]
@@ -107,21 +107,21 @@ class Home extends Component {
                                     });
                                     return <Card key={post.id} id={post.id} className="cardStyle">
                                         <div>
-                                            <CardHeader className="cardHeader" avatar={
-                                                <Avatar className="avatar" src={img} sizes="small" />
+                                            <CardHeader className="CardHead" avatar={
+                                                <Avatar className="CardHeadAvatar" src={img} sizes="small" />
                                             }
                                                         title={tempusername}
                                                         subheader={tempDate + "/" + tempMonth + "/" + tempYear + " " + tempHour + ":" + tempMin + ":" + tempSec} />
                                         </div>
-                                        <div className="cardContent">
+                                        <div className="CardContent">
                                             <CardContent>
-                                                <div className="imgSection">
+                                                <div className="CardContentImage">
                                                     <img className="image" src={tempSrc} alt={post.caption} />
                                                 </div>
                                                 < hr />
-                                                <div className="postDetails">
-                                                    <div className="caption"><Typography variant="h5">{post.caption}</Typography></div>
-                                                    <div className="tags" {...tagValue++}>
+                                                <div className="ImageDetails">
+                                                    <div className="Caption"><Typography variant="h5">{post.caption}</Typography></div>
+                                                    <div className="Tags" {...tagValue++}>
                                                         {
                                                             this.props.tagsList[Object.keys(tagsList)[tagValue - 1]].map(tag => {
                                                                 temp++
@@ -132,15 +132,15 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     {
-                                                        this.props.likeDetails[counter - 1] ? <div className="likeSection"><Favorite id={2} style={{ color: "red" }} className="likeButton" onClick={this.likeClickhandler.bind(this, counter - 1)} /><span>{likeNumber + 1} likes</span></div> :
-                                                            <div className="likeSection"><FavoriteBorderIcon id={2} className="likeButton" onClick={this.likeClickhandler.bind(this, counter - 1)} /><span>{likeNumber} likes</span></div>
+                                                        this.props.likeDetails[counter - 1] ? <div className="PostLikeSection"><Favorite id={2} style={{ color: "red" }} className="likeButton" onClick={this.likeClickhandler.bind(this, counter - 1)} /><span>{likeNumber + 1} likes</span></div> :
+                                                            <div className="PostLikeSection"><FavoriteBorderIcon id={2} className="PostLikeButton" onClick={this.likeClickhandler.bind(this, counter - 1)} /><span>{likeNumber} likes</span></div>
                                                     }
                                                 </div>
-                                                <div className="commentSection">
+                                                <div className="PostCommentSection">
                                                     {
                                                         <div {...commentsValue++}>
-                                                            <div id="comments" className="comments">
-                                                                <div className="addedCommentsSection">
+                                                            <div id="comments" className="Comments">
+                                                                <div className="CommentSection">
                                                                     {
                                                                         this.props.commentsList[Object.keys(commentsList)[commentsValue - 1]].map(comment => {
                                                                             temp++
@@ -152,12 +152,12 @@ class Home extends Component {
                                                                     }
                                                                 </div>
                                                             </div>
-                                                            <div className="addComment">
+                                                            <div className="NewComment">
                                                                 <FormControl className="commentInput" >
                                                                     <InputLabel htmlFor={"input" + commentsValue}>Add a comment</InputLabel>
                                                                     <Input id={"input" + commentsValue} type="text" value={this.state.comments[commentsValue - 1]} onChange={this.commentChangeHandler.bind(this, commentsValue - 1)} />
                                                                 </FormControl>
-                                                                <Button className="addButton" variant="contained" color="primary" onClick={this.addComment.bind(this, commentsValue - 1)}>
+                                                                <Button className="AddNewComment" variant="contained" color="primary" onClick={this.addComment.bind(this, commentsValue - 1)}>
                                                                     ADD
                                                                 </Button>
                                                             </div>

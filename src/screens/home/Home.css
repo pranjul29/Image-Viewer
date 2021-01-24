@@ -1,7 +1,7 @@
-.outerContainer {
+.mainContainer {
     width: 100%;
 }
-.home {
+.HomePage {
     padding-top: 64px;
 }
 .homeMain {
@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-around;
 }
-.cardContainer {
+.CardContainer {
     padding-left: 5%;
     padding-right: 5%;
     min-width: 1280px;
@@ -32,26 +32,26 @@
     margin-right: auto;
     display: block;
 }
-.likeSection {
+.PostLikeSection {
     margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
     justify-content: baseline;
 }
-.likeButton {
+.PostLikeButton {
     margin-right: 10px;
 }
-.tags {
+.Tags {
     color: #0095f6;
 }
-.addComment {
+.NewComment {
     width: 100%;
     display: flex;
     justify-content: space-between;
     /*justify-content: baseline;*/
     align-items: center;
 }
-.addButton {
+.AddNewComment {
     margin: 10px;
     height: 35px;
 }
@@ -62,11 +62,11 @@
     font-weight: bold;
     margin-right: 5px;
 }
-.comments {
+.Comments {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.addedCommentsSection {
+.CommentSection {
     height: 100px;
     overflow-y: auto;
 }
