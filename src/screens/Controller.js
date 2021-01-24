@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Login from './login/Login';
 import Home from './home/Home';
 import Profile from './profile/Profile';
-import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 class Controller extends Component {
     constructor() {
@@ -14,7 +14,7 @@ class Controller extends Component {
                 url2: "?fields=id,media_type,media_url,username,timestamp&access_token="
             },
             /* Please do not modify the access token */
-            accessToken: "IGQVJWajJFZA0ZAJQ0xXZADVjRmp2cnA5UElxTkdKY2I2d21yWWtUdGFoNkRiaGk4ckZApS0UxdEkxeHBFeklrMkZAhTjA4ZAVhhYlJaVUVFSjlBTjBpYXhzM0pQZAGs1ZAmVxQzFyUmduYUtBMXlwd1dkbWhfSAZDZD",
+            accessToken: "IGQVJYVUdsRE1HUlpRWTBoYkpBYktSX0Ixb1VHbjJ3UjZAvOHVwRkZAkWWpIOHJLdnktRG80TnRSdXhsVVZAtY0hvQlR6ZAGt0VjFLSkstUWpIYmREREZAodWkwUXdVWDJsdG5CN0d1UEZAKYUw0TDdWRkVrOVQ4LWNPT2xUaVNz",
             username: "",
             usernameSet: false,
             posts: [],
@@ -35,17 +35,9 @@ class Controller extends Component {
             //     input7: ["Credits to Matty for the picture", "Taken at the Yelagiri Peak"],
             //     input8: ["Taken on my birthday", "Last year"]
             // },
-            commentsList: this.commentGenerator(100),
-            tagsList: {
-                input1: ["#Christmas", "#Candles"],
-                input2: ["#Lights", "#LensFlares"],
-                input3: ["#Lab", "#Ruby"],
-                input4: ["#Christmas", "#Candles"],
-                input5: ["#Rocky", "#Survivor"],
-                input6: ["#Christmas", "#Lights"],
-                input7: ["#Trek", "#Yelagiri"],
-                input8: ["#Birthday", "#2019"]
-            }
+            // commentsList: this.commentGenerator(100),
+            commentsList: {},
+            tagsList: {}
         }
         // if (window.performance) {
         //     if (performance.navigation.type === 1) {
@@ -76,19 +68,19 @@ class Controller extends Component {
         var result = '';
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';
         var charactersLength = characters.length;
-        for ( var i = 0; i < length; i++ ) {
+        for (var i = 0; i < length; i++) {
             result += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         return result;
     }
 
     commentGenerator(numberOfPost) {
-            let tempCommentList = {}
-            for(let i = 0; i < numberOfPost; i++ ){
-                let tempArray = [...Array(Math.floor(Math.random() * 5))].map(() => this.makeComment(1 + Math.floor(Math.random() * 20)));
-                tempCommentList["input"+i] = tempArray;
-            }
-            return tempCommentList;
+        let tempCommentList = {}
+        for (let i = 0; i < numberOfPost; i++) {
+            let tempArray = [...Array(1 + Math.floor(Math.random() * 5))].map(() => this.makeComment(1 + Math.floor(Math.random() * 20)));
+            tempCommentList["input" + i] = tempArray;
+        }
+        return tempCommentList;
     }
 
     componentDidMount() {
@@ -97,7 +89,30 @@ class Controller extends Component {
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                that.setState({posts: JSON.parse(this.responseText).data});
+                let tempPostDetails = JSON.parse(this.responseText).data;
+                let counter = 1;
+                let tempTags = {}
+                tempPostDetails.forEach(Post => {
+                    let tags = [];
+                    let caption = "";
+                    let caption_split = Post.caption.split(" ");
+                    caption_split.forEach(a => {
+                        if (a.includes("#")) {
+                            tags.push(a)
+                        } else {
+                            caption = caption + a + " ";
+                        }
+                    })
+                    Post.caption = caption;
+                    tempTags["tag" + counter] = tags;
+                    counter++;
+                })
+                let tempCommentList = that.commentGenerator(tempPostDetails.length)
+                that.setState({
+                    posts: tempPostDetails,
+                    tagsList: tempTags,
+                    commentsList : tempCommentList
+                });
             }
         });
         xhr.open("GET", this.state.baseUrl + this.state.accessToken);
@@ -153,7 +168,9 @@ class Controller extends Component {
         let postDetails = []
         this.state.posts.forEach(post => {
             postDetails = this.getPostDetailsById(post.id)
+
         })
+
 
         return (
             <Router>
