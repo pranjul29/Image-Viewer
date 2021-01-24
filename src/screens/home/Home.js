@@ -110,86 +110,91 @@ class Home extends Component {
                                                 }
                                             });
                                             return <GridListTile>
-                                            <Card key={post.id} id={post.id} className="cardStyle">
-                                                <div>
-                                                    <CardHeader className="CardHead" avatar={
-                                                        <Avatar className="CardHeadAvatar" src={img} sizes="small"/>
-                                                    }
-                                                                title={interimusername}
-                                                                subheader={interimDate + "/" + interimMonth + "/" + interimYear + " " + interimHour + ":" + interimMin + ":" + interimSec}/>
-                                                </div>
-                                                <div className="CardContent">
-                                                    <CardContent>
-                                                        <div className="CardContentImage">
-                                                            <img className="image" src={interimSrc} alt={post.caption}/>
-                                                        </div>
-                                                        < hr/>
-                                                        <div className="ImageDetails">
-                                                            <div className="Caption"><Typography
-                                                                variant="h5">{post.caption}</Typography></div>
-                                                            <div className="Tags" {...tagValue++}>
+                                                <Card key={post.id} id={post.id} className="cardStyle">
+                                                    <div>
+                                                        <CardHeader className="CardHead" avatar={
+                                                            <Avatar className="CardHeadAvatar" src={img} sizes="small"/>
+                                                        }
+                                                                    title={interimusername}
+                                                                    subheader={interimDate + "/" + interimMonth + "/" + interimYear + " " + interimHour + ":" + interimMin + ":" + interimSec}/>
+                                                    </div>
+                                                    <div className="CardContent">
+                                                        <CardContent>
+                                                            <div className="CardContentImage">
+                                                                <img className="image" src={interimSrc}
+                                                                     alt={post.caption}/>
+                                                            </div>
+                                                            < hr/>
+                                                            <div className="ImageDetails">
+                                                                <div className="Caption"><Typography
+                                                                    variant="h5">{post.caption}</Typography></div>
+                                                                <div className="Tags" {...tagValue++}>
+                                                                    {
+                                                                        this.props.tagsList[Object.keys(tagsList)[tagValue - 1]].map(tag => {
+                                                                            interim++
+                                                                            return <span
+                                                                                key={"tag" + interim}>{tag}&nbsp;</span>
+                                                                        })
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div>
                                                                 {
-                                                                    this.props.tagsList[Object.keys(tagsList)[tagValue - 1]].map(tag => {
-                                                                        interim++
-                                                                        return <span
-                                                                            key={"tag" + interim}>{tag}&nbsp;</span>
-                                                                    })
+                                                                    this.props.likeDetails[counter - 1] ?
+                                                                        <div className="PostLikeSection"><Favorite
+                                                                            id={2}
+                                                                            style={{color: "red"}}
+                                                                            className="likeButton"
+                                                                            onClick={this.likeClickhandler.bind(this, counter - 1)}/><span>{likeNumber + 1} likes</span>
+                                                                        </div> :
+                                                                        <div className="PostLikeSection">
+                                                                            <FavoriteBorderIcon
+                                                                                id={2} className="PostLikeButton"
+                                                                                onClick={this.likeClickhandler.bind(this, counter - 1)}/><span>{likeNumber} likes</span>
+                                                                        </div>
                                                                 }
                                                             </div>
-                                                        </div>
-                                                        <div>
-                                                            {
-                                                                this.props.likeDetails[counter - 1] ?
-                                                                    <div className="PostLikeSection"><Favorite id={2}
-                                                                                                               style={{color: "red"}}
-                                                                                                               className="likeButton"
-                                                                                                               onClick={this.likeClickhandler.bind(this, counter - 1)}/><span>{likeNumber + 1} likes</span>
-                                                                    </div> :
-                                                                    <div className="PostLikeSection"><FavoriteBorderIcon
-                                                                        id={2} className="PostLikeButton"
-                                                                        onClick={this.likeClickhandler.bind(this, counter - 1)}/><span>{likeNumber} likes</span>
-                                                                    </div>
-                                                            }
-                                                        </div>
-                                                        <div className="PostCommentSection">
-                                                            {
-                                                                <div {...commentsValue++}>
-                                                                    <div id="comments" className="Comments">
-                                                                        <div className="CommentSection">
-                                                                            {
-                                                                                this.props.commentsList[Object.keys(commentsList)[commentsValue - 1]].map(comment => {
-                                                                                    interim++
-                                                                                    return <div key={post.id + interim}>
+                                                            <div className="PostCommentSection">
+                                                                {
+                                                                    <div {...commentsValue++}>
+                                                                        <div id="comments" className="Comments">
+                                                                            <div className="CommentSection">
+                                                                                {
+                                                                                    this.props.commentsList[Object.keys(commentsList)[commentsValue - 1]].map(comment => {
+                                                                                        interim++
+                                                                                        return <div
+                                                                                            key={post.id + interim}>
                                                                                         <span
                                                                                             className="bold">{interimusername}:</span>
-                                                                                        <span>{comment}</span>
-                                                                                    </div>
-                                                                                })
-                                                                            }
+                                                                                            <span>{comment}</span>
+                                                                                        </div>
+                                                                                    })
+                                                                                }
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="NewComment">
+                                                                            <FormControl className="commentInput">
+                                                                                <InputLabel
+                                                                                    htmlFor={"input" + commentsValue}>Add
+                                                                                    a
+                                                                                    comment</InputLabel>
+                                                                                <Input id={"input" + commentsValue}
+                                                                                       type="text"
+                                                                                       value={this.state.comments[commentsValue - 1]}
+                                                                                       onChange={this.commentChangeHandler.bind(this, commentsValue - 1)}/>
+                                                                            </FormControl>
+                                                                            <Button className="AddNewComment"
+                                                                                    variant="contained" color="primary"
+                                                                                    onClick={this.addComment.bind(this, commentsValue - 1)}>
+                                                                                ADD
+                                                                            </Button>
                                                                         </div>
                                                                     </div>
-                                                                    <div className="NewComment">
-                                                                        <FormControl className="commentInput">
-                                                                            <InputLabel
-                                                                                htmlFor={"input" + commentsValue}>Add a
-                                                                                comment</InputLabel>
-                                                                            <Input id={"input" + commentsValue}
-                                                                                   type="text"
-                                                                                   value={this.state.comments[commentsValue - 1]}
-                                                                                   onChange={this.commentChangeHandler.bind(this, commentsValue - 1)}/>
-                                                                        </FormControl>
-                                                                        <Button className="AddNewComment"
-                                                                                variant="contained" color="primary"
-                                                                                onClick={this.addComment.bind(this, commentsValue - 1)}>
-                                                                            ADD
-                                                                        </Button>
-                                                                    </div>
-                                                                </div>
-                                                            }
-                                                        </div>
-                                                    </CardContent>
-                                                </div>
-                                            </Card>
+                                                                }
+                                                            </div>
+                                                        </CardContent>
+                                                    </div>
+                                                </Card>
                                             </GridListTile>
                                         })
                                     }

@@ -25,16 +25,6 @@ class Controller extends Component {
             likeDetails: new Array(8).fill(false),
             follows: Math.floor(Math.random() * 20),
             followedBy: Math.floor(Math.random() * 20),
-            // commentsList: {
-            //     input1: ["Taken during Christmas", "2 years ago"],
-            //     input2: ["Such an old picture", "Lens flares?"],
-            //     input3: ["Sweetest thing on the planet!", "Ruby"],
-            //     input4: ["Taken 1 year ago", "Also taken during Christmas time"],
-            //     input5: ["Rocky", "This fellow is a survivor"],
-            //     input6: ["Yes Christmas time again", "and I like taking pictures of lights"],
-            //     input7: ["Credits to Matty for the picture", "Taken at the Yelagiri Peak"],
-            //     input8: ["Taken on my birthday", "Last year"]
-            // },
             // commentsList: this.commentGenerator(100),
             commentsList: {},
             tagsList: {}
@@ -111,7 +101,7 @@ class Controller extends Component {
                 that.setState({
                     posts: tempPostDetails,
                     tagsList: tempTags,
-                    commentsList : tempCommentList
+                    commentsList: tempCommentList
                 });
             }
         });
