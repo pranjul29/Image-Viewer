@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Login from './login/Login';
 import Home from './home/Home';
 //import Profile from './profile/Profile';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 class Controller extends Component {
     constructor() {
@@ -54,7 +54,7 @@ class Controller extends Component {
         let that = this;
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
-                that.setState({ posts: JSON.parse(this.responseText).data });
+                that.setState({posts: JSON.parse(this.responseText).data});
             }
         });
         xhr.open("GET", this.state.baseUrl + this.state.accessToken);
@@ -78,31 +78,31 @@ class Controller extends Component {
     }
 
     filterCaptions = (str) => {
-        this.setState({ filteredPosts: this.state.posts })
-        str.trim().length > 0 ? this.setState({ showFilteredPosts: true }) : this.setState({ showFilteredPosts: false })
+        this.setState({filteredPosts: this.state.posts})
+        str.trim().length > 0 ? this.setState({showFilteredPosts: true}) : this.setState({showFilteredPosts: false})
         let temp = this.state.posts;
         let filtered = temp.filter(post => {
             return post.caption.toLowerCase().includes(str.trim().toLowerCase())
         })
-        this.setState({ filteredPosts: filtered })
+        this.setState({filteredPosts: filtered})
     }
 
     updatelikeDetails = (id) => {
         let temp = this.state.likeDetails
         temp[id] ? temp[id] = false : temp[id] = true
-        this.setState({ likeDetails: temp })
-        this.setState({ usernameSet: true })
+        this.setState({likeDetails: temp})
+        this.setState({usernameSet: true})
     }
 
     setUsername = (name) => {
-        this.setState({ username: name })
-        this.setState({ usernameSet: true })
+        this.setState({username: name})
+        this.setState({usernameSet: true})
     }
 
     addComments = (num, comment) => {
         let temp = this.state.commentsList
         temp[Object.keys(temp)[num]].push(comment)
-        this.setState({ commentsList: temp })
+        this.setState({commentsList: temp})
     }
 
     render() {
@@ -116,7 +116,7 @@ class Controller extends Component {
             <Router>
                 <div>
                     <Route exact path='/'>
-                        <Login accessToken={this.state.accessToken} />
+                        <Login accessToken={this.state.accessToken}/>
                     </Route>
                     <Route exact path={'/home'}>
                         <Home loggedIn={this.state.loggedIn}
@@ -130,7 +130,7 @@ class Controller extends Component {
                               posts={this.state.posts}
                               filterCaptions={this.filterCaptions}
                               postDetails={postDetails}
-                              likeList={this.state.likeList} />
+                              likeList={this.state.likeList}/>
                     </Route>
                 </div>
             </Router>
