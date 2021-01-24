@@ -1,0 +1,72 @@
+.outerContainer {
+    width: 100%;
+}
+.home {
+    padding-top: 64px;
+}
+.homeMain {
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+.cardContainer {
+    padding-left: 5%;
+    padding-right: 5%;
+    min-width: 1280px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.cardStyle {
+    width: 600px;
+    display: inline-block;
+    flex-direction: column;
+    margin: 20px;
+    min-width: 500px;
+}
+.image {
+    height: 500px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.likeSection {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: baseline;
+}
+.likeButton {
+    margin-right: 10px;
+}
+.tags {
+    color: #0095f6;
+}
+.addComment {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /*justify-content: baseline;*/
+    align-items: center;
+}
+.addButton {
+    margin: 10px;
+    height: 35px;
+}
+.commentInput {
+    width: 80%;
+}
+.bold {
+    font-weight: bold;
+    margin-right: 5px;
+}
+.comments {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.addedCommentsSection {
+    height: 100px;
+    overflow-y: auto;
+}
