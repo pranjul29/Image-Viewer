@@ -13,7 +13,7 @@ class Controller extends Component {
                 url1: "https://graph.instagram.com/",
                 url2: "?fields=id,media_type,media_url,username,timestamp&access_token="
             },
-            /* Please do not modify the access token */
+            /* Please change the access token to the User Access Token*/
             accessToken: "IGQVJXdEZA6cEZAUZAURjWFlRTTdWZAGgxSGxKbTdwcUFyUl9KUDRuMXMyWHpsc1p2NVRhRXk5ekxEdDJfUUdUYURndS1FU3BzY2JRWUI2dkpyZAzhuSVBRWjdHS0hsamJRdkJOU2ZAiNU95QUstakU2NWF6c2RralFLZAExTOHhV",
             username: "",
             usernameSet: false,
