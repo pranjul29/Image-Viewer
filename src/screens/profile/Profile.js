@@ -56,7 +56,7 @@ class Profile extends Component {
         this.setState({updatedNameRequired: "dispNone"})
     }
 
-    updateRealName = () => {
+    updateUserName = () => {
         if (this.state.updatedName.trim().length === 0) {
             this.setState({updatedNameRequired: "dispBlock"})
         } else {
@@ -84,20 +84,20 @@ class Profile extends Component {
         this.setState({PostModalIsOpen: false})
     }
 
-    likeClickhandler = () => {
+    likeButtonHandler = () => {
         this.state.liked ? this.setState({liked: false}) : this.setState({liked: true})
-        this.props.updatelikeDetails(this.state.counter)
+        this.props.updatedLikeDetails(this.state.counter)
     }
 
-    commentChangeHandler = (pos, e) => {
+    NewCommentHandler = (pos, e) => {
         let interim = this.state.comments
         interim[pos] = e.target.value
         this.setState({comments: interim})
     }
 
-    addComment = (pos) => {
+    addNewComment = (pos) => {
         if (this.state.comments[pos].trim() !== "") {
-            this.props.addComments(pos, this.state.comments[pos])
+            this.props.addNewComments(pos, this.state.comments[pos])
         }
         let interim = this.state.comments
         interim[pos] = ""
@@ -188,7 +188,7 @@ class Profile extends Component {
                                                             <br/><br/>
                                                             <div>
                                                                 <Button variant="contained" color="primary"
-                                                                        onClick={this.updateRealName}>
+                                                                        onClick={this.updateUserName}>
                                                                     UPDATE
                                                                 </Button>
                                                             </div>
@@ -275,13 +275,13 @@ class Profile extends Component {
                                                                                     className="likeSectionInProfilePage">
                                                                                     <Favorite id={2} style={{color: "red"}}
                                                                                               className="likeButton"
-                                                                                              onClick={this.likeClickhandler}/><span>{this.state.likeCounter + 1} likes</span>
+                                                                                              onClick={this.likeButtonHandler}/><span>{this.state.likeCounter + 1} likes</span>
                                                                                 </div> :
                                                                                 <div
                                                                                     className="likeSectionInProfilePage">
                                                                                     <FavoriteBorderIcon id={2}
                                                                                                         className="likeButton"
-                                                                                                        onClick={this.likeClickhandler}/><span>{this.state.likeCounter} likes</span>
+                                                                                                        onClick={this.likeButtonHandler}/><span>{this.state.likeCounter} likes</span>
                                                                                 </div>
                                                                         }
                                                                     </div>
@@ -291,11 +291,11 @@ class Profile extends Component {
                                                                                 a comment</InputLabel>
                                                                             <Input id={"input" + counter} type="text"
                                                                                    value={this.state.comments[this.state.counter]}
-                                                                                   onChange={this.commentChangeHandler.bind(this, this.state.counter)}/>
+                                                                                   onChange={this.NewCommentHandler.bind(this, this.state.counter)}/>
                                                                         </FormControl>
                                                                         <Button className="addCommentButton"
                                                                                 variant="contained" color="primary"
-                                                                                onClick={this.addComment.bind(this, this.state.counter)}>
+                                                                                onClick={this.addNewComment.bind(this, this.state.counter)}>
                                                                             ADD
                                                                         </Button>
                                                                     </div>

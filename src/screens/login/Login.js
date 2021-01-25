@@ -18,17 +18,19 @@ class Login extends Component {
         this.state = {
             correctUsername: "upgrad123@gmail.com",
             correctPassword: "upgrad@123",
-            Loginusername: "",
+            loginUsername: "",
             loginPassword: "",
             usernameRequired: "dispNone",
             passwordRequired: "dispNone",
             errorMessage: "dispNone",
-            loggedIn: sessionStorage.getItem("access-token") == null ? false : true
+            loggedIn: sessionStorage.getItem("access-token") == null ? false : true,
+            // Pls Update Access Token in Controller.js File
+            accessToken: this.props.accessToken
         }
     }
 
     usernameChangeHandler = (e) => {
-        this.setState({Loginusername: e.target.value})
+        this.setState({loginUsername: e.target.value})
     }
 
     passwordChangeHandler = (e) => {
@@ -37,14 +39,14 @@ class Login extends Component {
 
     loginHandler = () => {
         this.setState({errorMessage: "dispNone"})
-        this.state.Loginusername === "" ? this.setState({usernameRequired: "dispBlock"}) : this.setState({usernameRequired: "dispNone"})
+        this.state.loginUsername === "" ? this.setState({usernameRequired: "dispBlock"}) : this.setState({usernameRequired: "dispNone"})
         this.state.loginPassword === "" ? this.setState({passwordRequired: "dispBlock"}) : this.setState({passwordRequired: "dispNone"})
 
-        if (this.state.Loginusername === this.state.correctUsername && this.state.loginPassword === this.state.correctPassword) {
+        if (this.state.loginUsername === this.state.correctUsername && this.state.loginPassword === this.state.correctPassword) {
             sessionStorage.setItem('access-token', this.props.accessToken);
             //this.props.history.push('/home');
         } else {
-            if (this.state.Loginusername !== "" && this.state.loginPassword !== "")
+            if (this.state.loginUsername !== "" && this.state.loginPassword !== "")
                 this.setState({errorMessage: "dispBlock"});
         }
     }
@@ -79,7 +81,7 @@ class Login extends Component {
                                         <span className="red unselectable">Incorrect username and/or password</span>
                                     </FormHelperText><br/>
                                     <Link style={{textDecoration: 'none'}}
-                                          to={(this.state.Loginusername === this.state.correctUsername && this.state.loginPassword === this.state.correctPassword) ? "/home" : "/"}>
+                                          to={(this.state.loginUsername === this.state.correctUsername && this.state.loginPassword === this.state.correctPassword) ? "/home" : "/"}>
                                         <Button variant="contained" color="primary"
                                                 onClick={this.loginHandler}>LOGIN</Button>
                                     </Link>

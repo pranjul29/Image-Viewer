@@ -34,7 +34,7 @@ class Home extends Component {
     }
 
     likeClickhandler = (id) => {
-        this.props.updatelikeDetails(id)
+        this.props.updatedLikeDetails(id)
     }
 
     commentChangeHandler = (pos, e) => {
@@ -45,7 +45,7 @@ class Home extends Component {
 
     addComment = (pos) => {
         if (this.state.comments[pos].trim() !== "") {
-            this.props.addComments(pos, this.state.comments[pos])
+            this.props.addNewComments(pos, this.state.comments[pos])
         }
         let interim = this.state.comments
         interim[pos] = ""
@@ -86,7 +86,7 @@ class Home extends Component {
                     <div className="mainContainer">
                         <Header dispalySearchBar={true}
                                 displayUserProfileIcon={true}
-                                filterCaptions={this.props.filterCaptions}
+                                filterCaptions={this.props.filterCaptionsBySearch}
                         />
                         <div className="HomePage">
                             <div className="homeMain">

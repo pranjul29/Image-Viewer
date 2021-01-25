@@ -14,7 +14,7 @@ class Controller extends Component {
                 url2: "?fields=id,media_type,media_url,username,timestamp&access_token="
             },
             /* Please do not modify the access token */
-            accessToken: "IGQVJYVUdsRE1HUlpRWTBoYkpBYktSX0Ixb1VHbjJ3UjZAvOHVwRkZAkWWpIOHJLdnktRG80TnRSdXhsVVZAtY0hvQlR6ZAGt0VjFLSkstUWpIYmREREZAodWkwUXdVWDJsdG5CN0d1UEZAKYUw0TDdWRkVrOVQ4LWNPT2xUaVNz",
+            accessToken: "IGQVJYODNqcUIzMTBuWDgzX1JNRE9tcHdqcUszLVo2TVlPXzNLeHZAkZAHNZAR25YT2xhZAlZACdzVCNGRqdmQ1Y2NzWGIwZA1hEcUt3RmRnRzNWUWRaWGpzaW1jWlprcG1ucC1UY2tUTy1qS2hUbmUzcUE1eHZA6eHg0dXBRRzVz",
             username: "",
             usernameSet: false,
             posts: [],
@@ -26,8 +26,8 @@ class Controller extends Component {
             follows: Math.floor(Math.random() * 20),
             followedBy: Math.floor(Math.random() * 20),
             // commentsList: this.commentGenerator(100),
-            commentsList: {},
-            tagsList: {}
+            commentsList: this.commentGenerator(100),
+            tagsList: this.tagGenerator(100)
         }
         // if (window.performance) {
         //     if (performance.navigation.type === 1) {
@@ -73,6 +73,15 @@ class Controller extends Component {
         return tempCommentList;
     }
 
+    tagGenerator(numberOfPost) {
+        let tempTagList = {}
+        for (let i = 0; i < numberOfPost; i++) {
+            let tempArray = [...Array(1 + Math.floor(Math.random() * 5))].map(() =>"#" + this.makeComment(1 + Math.floor(Math.random() * 20)));
+            tempTagList["input" + i] = tempArray;
+        }
+        return tempTagList;
+    }
+
     componentDidMount() {
         let data = null;
         let xhr = new XMLHttpRequest();
@@ -110,7 +119,7 @@ class Controller extends Component {
         xhr.send(data);
     }
 
-    getPostDetailsById = (id) => {
+    fetchPostDetails = (id) => {
         let postData = null;
         let xhrPost = new XMLHttpRequest();
         let tempPostDetails = this.state.tempList
@@ -125,7 +134,7 @@ class Controller extends Component {
         return tempPostDetails
     }
 
-    filterCaptions = (str) => {
+    filterCaptionsBySearch = (str) => {
         this.setState({filteredPosts: this.state.posts})
         str.trim().length > 0 ? this.setState({showFilteredPosts: true}) : this.setState({showFilteredPosts: false})
         let temp = this.state.posts;
@@ -135,36 +144,39 @@ class Controller extends Component {
         this.setState({filteredPosts: filtered})
     }
 
-    updatelikeDetails = (id) => {
+    updatedLikeDetails = (id) => {
         let temp = this.state.likeDetails
         temp[id] ? temp[id] = false : temp[id] = true
         this.setState({likeDetails: temp})
         this.setState({usernameSet: true})
     }
 
-    setUsername = (name) => {
-        this.setState({username: name})
-        this.setState({usernameSet: true})
-    }
+    // setUsername = (name) => {
+    //     this.setState({username: name})
+    //     this.setState({usernameSet: true})
+    // }
 
-    addComments = (num, comment) => {
+    addNewComments = (num, comment) => {
         let temp = this.state.commentsList
         temp[Object.keys(temp)[num]].push(comment)
         this.setState({commentsList: temp})
     }
 
+    // thisIsATest = () => {
+    //
+    // }
     render() {
         console.log(this.state.commentsList)
         let postDetails = []
         this.state.posts.forEach(post => {
-            postDetails = this.getPostDetailsById(post.id)
+            postDetails = this.fetchPostDetails(post.id)
 
         })
-
 
         return (
             <Router>
                 <div>
+
                     <Route exact path='/'>
                         <Login accessToken={this.state.accessToken}/>
                     </Route>
@@ -172,13 +184,13 @@ class Controller extends Component {
                         <Home loggedIn={this.state.loggedIn}
                               tagsList={this.state.tagsList}
                               commentsList={this.state.commentsList}
-                              addComments={this.addComments}
+                              addNewComments={this.addNewComments}
                               likeDetails={this.state.likeDetails}
-                              updatelikeDetails={this.updatelikeDetails}
+                              updatedLikeDetails={this.updatedLikeDetails}
                               showFilteredPosts={this.state.showFilteredPosts}
                               filteredPosts={this.state.filteredPosts}
                               posts={this.state.posts}
-                              filterCaptions={this.filterCaptions}
+                              filterCaptionsBySearch={this.filterCaptionsBySearch}
                               postDetails={postDetails}
                               likeList={this.state.likeList}/>
                     </Route>
@@ -186,9 +198,9 @@ class Controller extends Component {
                         <Profile loggedIn={this.state.loggedIn}
                                  tagsList={this.state.tagsList}
                                  commentsList={this.state.commentsList}
-                                 addComments={this.addComments}
+                                 addNewComments={this.addNewComments}
                                  likeDetails={this.state.likeDetails}
-                                 updatelikeDetails={this.updatelikeDetails}
+                                 updatedLikeDetails={this.updatedLikeDetails}
                                  posts={this.state.posts}
                                  postDetails={postDetails}
                                  likeList={this.state.likeList}
