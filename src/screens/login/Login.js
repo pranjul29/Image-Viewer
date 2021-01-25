@@ -25,7 +25,6 @@ class Login extends Component {
             errorMessage: "dispNone",
             loggedIn: sessionStorage.getItem("access-token") == null ? false : true,
             // Pls Update Access Token in Controller.js File
-            accessToken: this.props.accessToken
         }
     }
 

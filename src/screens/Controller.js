@@ -14,7 +14,7 @@ class Controller extends Component {
                 url2: "?fields=id,media_type,media_url,username,timestamp&access_token="
             },
             /* Please do not modify the access token */
-            accessToken: "IGQVJYODNqcUIzMTBuWDgzX1JNRE9tcHdqcUszLVo2TVlPXzNLeHZAkZAHNZAR25YT2xhZAlZACdzVCNGRqdmQ1Y2NzWGIwZA1hEcUt3RmRnRzNWUWRaWGpzaW1jWlprcG1ucC1UY2tUTy1qS2hUbmUzcUE1eHZA6eHg0dXBRRzVz",
+            accessToken: "IGQVJXdEZA6cEZAUZAURjWFlRTTdWZAGgxSGxKbTdwcUFyUl9KUDRuMXMyWHpsc1p2NVRhRXk5ekxEdDJfUUdUYURndS1FU3BzY2JRWUI2dkpyZAzhuSVBRWjdHS0hsamJRdkJOU2ZAiNU95QUstakU2NWF6c2RralFLZAExTOHhV",
             username: "",
             usernameSet: false,
             posts: [],
