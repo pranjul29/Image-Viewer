@@ -76,7 +76,7 @@ class Controller extends Component {
     tagGenerator(numberOfPost) {
         let tempTagList = {}
         for (let i = 0; i < numberOfPost; i++) {
-            let tempArray = [...Array(1 + Math.floor(Math.random() * 5))].map(() =>"#" + this.makeComment(1 + Math.floor(Math.random() * 20)));
+            let tempArray = [...Array(1 + Math.floor(Math.random() * 5))].map(() => "#" + this.makeComment(1 + Math.floor(Math.random() * 20)));
             tempTagList["input" + i] = tempArray;
         }
         return tempTagList;
